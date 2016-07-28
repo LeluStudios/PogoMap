@@ -629,23 +629,24 @@ function setupPokemonMarker(item, skipNotification) {
         content: pokemonLabel(item.pokemon_name, item.disappear_time, item.pokemon_id, item.latitude, item.longitude, item.encounter_id),
         disableAutoPan: true
     });
-
+    
     if (notifiedPokemon.indexOf(item.pokemon_id) > -1) {
         if (!skipNotification) {
             if (Store.get('playSound')) {
               audio.play();
             }
             sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
-            
-            if(window.location.href.indexOf("lenix2pogo.herokuapp.com") !== -1){
-            	var http = new XMLHttpRequest();
-		var url = "https://api.pushover.net/1/messages.json";
-		var params = "token=agfux8443smdy8u6nwnfsb53eqgg6c&user=umw3j9nrknkc7p1r13qapchem2yf2j&message="+"A wild " + item.pokemon_name + " appeared!&url=http://lenix2pogo.herokuapp.com";
-		http.open("POST", url, true);
-		
-		//Send the proper header information along with the request
-		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		http.send(params);
+            if(Store.get('geoLocate')){
+	            if(window.location.href.indexOf("lenix2pogo.herokuapp.com") !== -1){
+	            	var http = new XMLHttpRequest();
+			var url = "https://api.pushover.net/1/messages.json";
+			var params = "token=agfux8443smdy8u6nwnfsb53eqgg6c&user=umw3j9nrknkc7p1r13qapchem2yf2j&message="+"A wild " + item.pokemon_name + " appeared!&url=http://lenix2pogo.herokuapp.com";
+			http.open("POST", url, true);
+			
+			//Send the proper header information along with the request
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.send(params);
+	            }
             }
         	
         }
