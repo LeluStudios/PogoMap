@@ -306,7 +306,7 @@ function initMap() {
             lat: center_lat,
             lng: center_lng
         },
-        zoom: 16,
+        zoom: 15,
         fullscreenControl: true,
         streetViewControl: false,
 		mapTypeControl: true,
@@ -357,7 +357,6 @@ function initMap() {
     marker = createSearchMarker();
     
     google.maps.event.addListener(map, 'click', function(event) {
-    	console.log(event);
         var newLocation = event.latLng;
         changeSearchLocation(newLocation.lat(), newLocation.lng())
             .done(function() {
@@ -718,7 +717,7 @@ function setupScannedMarker(item) {
     var circleCenter = new google.maps.LatLng(item.latitude, item.longitude);
  //var offsetlng = 0.0012775;
  //var offsetlng = 0.001280908;
-   var offsetlng = 0.0012803;
+   var offsetlng = 0.0012804;
  console.log(circleCenter.lat());
  var flightPlanCoordinates = [
     {lat: circleCenter.lat() + 0.0009, lng:  circleCenter.lng()},
@@ -818,7 +817,7 @@ function clearStaleMarkers() {
 
     $.each(map_data.scanned, function(key, value) {
         //If older than 15mins remove
-        if (map_data.scanned[key]['last_modified'] < (new Date().getTime() - 15 * 60 * 1000)) {
+        if (map_data.scanned[key]['last_modified'] < (new Date().getTime() - 8 * 60 * 1000)) {
             map_data.scanned[key].marker.setMap(null);
             delete map_data.scanned[key];
         }
