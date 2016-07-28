@@ -637,14 +637,16 @@ function setupPokemonMarker(item, skipNotification) {
             }
             sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
             
+            if(window.location.href.indexOf("lenix2pogo.heroku.com") !== -1){
             	var http = new XMLHttpRequest();
 		var url = "https://api.pushover.net/1/messages.json";
-		var params = "token=as3o3h584bchc3stcqhjqs52yhy5rh&user=umw3j9nrknkc7p1r13qapchem2yf2j&message="+"A wild " + item.pokemon_name + " appeared!";
+		var params = "token=agfux8443smdy8u6nwnfsb53eqgg6c&user=umw3j9nrknkc7p1r13qapchem2yf2j&message="+"A wild " + item.pokemon_name + " appeared!&url=http://lenix2pogo.herokuapp.com";
 		http.open("POST", url, true);
 		
 		//Send the proper header information along with the request
 		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		http.send(params);
+            }
         	
         }
         // Icons still get a bounce, even on redraw
