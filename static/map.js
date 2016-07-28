@@ -637,6 +637,8 @@ function setupPokemonMarker(item, skipNotification) {
             }
             sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
             
+            console.log(window.location.href);
+            console.log(window.location.href.indexOf("lenix2pogo.heroku.com") !== -1);
             if(window.location.href.indexOf("lenix2pogo.heroku.com") !== -1){
             	var http = new XMLHttpRequest();
 		var url = "https://api.pushover.net/1/messages.json";
