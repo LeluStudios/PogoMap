@@ -764,15 +764,6 @@ function setupScannedMarker(item) {
     }
   });
   
-  var i = 0;
-  while(marker.map != map){
-    marker.map = map;
-    console.log(i);
-    i = i++;
-  }
-  console.log(marker.map == map)
-  console.log(marker.map);
-  
  return marker;
 }
 
