@@ -46,7 +46,7 @@ def get_args():
                         type=float, default=0)
     parser.add_argument('-td', '--thread-delay',
                         help='Time delay between each scan thread loop',
-                        type=float, default=20)
+                        type=float, default=5)
     parser.add_argument('-ld', '--login-delay',
                         help='Time delay between each login attempt',
                         type=float, default=5)
