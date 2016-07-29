@@ -717,7 +717,7 @@ function setupScannedMarker(item) {
     var circleCenter = new google.maps.LatLng(item.latitude, item.longitude);
  //var offsetlng = 0.0012775;
  //var offsetlng = 0.001280908;
-   var offsetlng = 0.0012804;
+   var offsetlng = 0.00128045;
  console.log(circleCenter.lat());
  var flightPlanCoordinates = [
     {lat: circleCenter.lat() + 0.0009, lng:  circleCenter.lng()},
@@ -731,10 +731,10 @@ function setupScannedMarker(item) {
   var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
-    strokeColor: '#FFFFFF',
+    strokeColor: '#00FF00',
     strokeOpacity: 0.5,
     strokeWeight: 0,
-    fillColor: getColorByDate(item.last_modified),
+    fillColor: '#00FF00',
     center: circleCenter,
     radius: 100
   });
