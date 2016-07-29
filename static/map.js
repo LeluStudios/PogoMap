@@ -758,6 +758,7 @@ function setupScannedMarker(item) {
     strokeOpacity: 0.5,
     strokeWeight: 1,
     fillColor: '#00FF00',
+    fillOpacity: 0.3,
     center: circleCenter,
     getCenter: function(){
       return this.center;
