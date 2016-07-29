@@ -655,6 +655,7 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
       if (Store.get('playSound')) {
         audio.play();
       }
+      console.log(item);
       sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
       sendMobileNotification(item.pokemon_name); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
     }
@@ -668,7 +669,7 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
 }
 
 function sendMobileNotification(name){ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
-    console.log(Store.get('mobileNotification'));
+    
     if(Store.get('mobileNotification')){
         if(window.location.href.indexOf("lenix2pogo.herokuapp.com") !== -1){
             var http = new XMLHttpRequest();
@@ -749,25 +750,18 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() - 0.00045, lng: circleCenter.lng() +offsetlng},
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
-  var marker2 = new google.maps.Polygon({
+  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
     strokeOpacity: 0.5,
     strokeWeight: 0,
     fillColor: '#00FF00',
+    fillOpacity: 0.4,
     center: circleCenter,
     radius: 100
   });
-  var marker = new google.maps.Circle({
-        map: map,
-        center: circleCenter,
-        radius: 100,    // 10 miles in metres
-        fillColor: getColorByDate(item.last_modified),
-        fillOpacity: 0.1,
-        strokeWeight: 0,
-        strokeOpacity: 0.1
-    });
+  
 
   return marker;
 }
