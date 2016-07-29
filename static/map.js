@@ -816,6 +816,7 @@ function clearStaleMarkers() {
   $.each(map_data.scanned, function(key, value) {
     //If older than 15mins remove
     if (map_data.scanned[key]['last_modified'] < (new Date().getTime() - 15 * 60 * 1000)) {
+      console.log("get down!");
       map_data.scanned[key].marker.setMap(null);
       delete map_data.scanned[key];
     }
@@ -1005,7 +1006,7 @@ function processScanned(i, item) {
     if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
     map_data.scanned[item.scanned_id] = item;
-    map_data.scanned[item.scanned_id].map = map;
+    console.log(map_data.scanned);
   }
 }
 
