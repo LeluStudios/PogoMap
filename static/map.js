@@ -750,7 +750,7 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() - 0.00045, lng: circleCenter.lng() +offsetlng},
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
-  var marker = new google.maps.Polygon({
+  var marker2 = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
@@ -761,7 +761,15 @@ function setupScannedMarker(item) {
     center: circleCenter,
     radius: 100
   });
-  
+  var marker = new google.maps.Circle({
+        map: map,
+        center: circleCenter,
+        radius: 100,    // 10 miles in metres
+        fillColor: getColorByDate(item.last_modified),
+        fillOpacity: 0.1,
+        strokeWeight: 0,
+        strokeOpacity: 0.1
+    });
 
   return marker;
 }
