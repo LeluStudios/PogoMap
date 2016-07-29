@@ -741,8 +741,8 @@ function getColorByDate(value) {
 function setupScannedMarker(item) {
   var circleCenter = new google.maps.LatLng(item.latitude, item.longitude);
 
-  var offsetlng = 0.001280475;   //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY die nächsten zeilen acuh
-  var flightPlanCoordinates = [
+ var offsetlng = 0.001280475;
+ var flightPlanCoordinates = [
     {lat: circleCenter.lat() + 0.0009, lng:  circleCenter.lng()},
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() -offsetlng},
     {lat: circleCenter.lat() - 0.00045, lng: circleCenter.lng() -offsetlng},
@@ -750,26 +750,17 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() - 0.00045, lng: circleCenter.lng() +offsetlng},
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
-  var marker = new google.maps.Circle({
-    map: map,
-    center: circleCenter,
-    radius: 100, // 10 miles in metres
-    fillColor: getColorByDate(item.last_modified),
-    strokeWeight: 1
-  });
-  /*
- var marker = new google.maps.Polygon({
+ 
+  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
-    strokeColor: '#000000',
+    strokeColor: '#00FF00',
     strokeOpacity: 0.5,
     strokeWeight: 1,
     fillColor: '#00FF00',
-    fillOpacity: 0.3,
     center: circleCenter,
     radius: 100
   });
-  */
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  return marker;
 }
