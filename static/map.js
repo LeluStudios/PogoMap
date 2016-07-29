@@ -762,6 +762,7 @@ function setupScannedMarker(item) {
     radius: 100
   });
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ console.log(marker);
  return marker;
 }
 
@@ -1008,6 +1009,7 @@ function processScanned(i, item) {
   } else { // add marker to map and item to dict
     if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
+    console.log(item);
     map_data.scanned[item.scanned_id] = item;
   }
 }
