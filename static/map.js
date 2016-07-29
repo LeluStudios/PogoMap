@@ -751,7 +751,7 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
  
-  var marker = new google.maps.Circle({
+  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
