@@ -668,6 +668,7 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
 }
 
 function sendMobileNotification(name){ //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
+    console.log(Store.get('mobileNotification'));
     if(Store.get('mobileNotification')){
         if(window.location.href.indexOf("lenix2pogo.herokuapp.com") !== -1){
             var http = new XMLHttpRequest();
@@ -1190,6 +1191,20 @@ function addMyLocationButton() {
       'opacity': 0.5
     });
   });
+  
+  google.maps.event.addListener(map, 'click', function(event) {
+        var newLocation = event.latLng;
+        changeSearchLocation(newLocation.lat(), newLocation.lng())
+            .done(function() {
+                oldLocation = null;
+                marker.setPosition(newLocation);
+            })
+            .fail(function() {
+                if (oldLocation) {
+                    marker.setPosition(oldLocation);
+                }
+            });
+    });
 }
 
 function changeLocation(lat, lng) {
