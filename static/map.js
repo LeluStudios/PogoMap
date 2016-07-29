@@ -766,9 +766,9 @@ function setupScannedMarker(item) {
         center: circleCenter,
         radius: 100,    // 10 miles in metres
         fillColor: getColorByDate(item.last_modified),
-        fillOpacity: 0.1,
+        fillOpacity: 0,
         strokeWeight: 0,
-        strokeOpacity: 0.1
+        strokeOpacity: 0
     });
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //Ich hab keinen blassen schimmer warum das funktioniert. Er nimmt trotzdem das Sechseck (marker2) und ohne den Kreis klappt es nich WTF?!
