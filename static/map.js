@@ -1368,6 +1368,10 @@ $(function() {
   $('#sound-switch').change(function() {
     Store.set("playSound", this.checked);
   });
+  
+  $('#mobile-switch').change(function() {
+    Store.set("mobileNotification", this.checked);
+  });
 
   $('#pokemon-icons').change(function() {
     Store.set('pokemonIcons', this.value);
