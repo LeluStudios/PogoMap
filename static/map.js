@@ -117,7 +117,7 @@ var StoreOptions = {
     type: StoreTypes.JSON
   },
   showGyms: {
-    default: false,
+    default: true,
     type: StoreTypes.Boolean
   },
   showPokemon: {
@@ -133,11 +133,11 @@ var StoreOptions = {
     type: StoreTypes.Boolean
   },
   showLuredPokestopsOnly: {
-    default: 0,
+    default: 1,
     type: StoreTypes.Number
   },
   showScanned: {
-    default: false,
+    default: true,
     type: StoreTypes.Boolean
   },
   playSound: {
@@ -757,7 +757,7 @@ function setupScannedMarker(item) {
     strokeOpacity: 0.5,
     strokeWeight: 0,
     fillColor: '#00FF00',
-    fillOpacity: 0.4,
+    fillOpacity: 0.3,
     center: circleCenter,
     radius: 100
   });
@@ -770,7 +770,8 @@ function setupScannedMarker(item) {
         strokeWeight: 0,
         strokeOpacity: 0.1
     });
-
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//Ich hab keinen blassen schimmer warum das funktioniert. Er nimmt trotzdem das Sechseck (marker2) und ohne den Kreis klappt es nich WTF?!
   return marker;
 }
 
