@@ -757,7 +757,11 @@ function setupScannedMarker(item) {
     strokeColor: '#00FF00',
     strokeOpacity: 0.5,
     strokeWeight: 1,
-    fillColor: '#00FF00'
+    fillColor: '#00FF00',
+    center: circleCenter,
+    getCenter: function(){
+      return this.center;
+    }
   });
   
   var i = 0;
@@ -766,6 +770,8 @@ function setupScannedMarker(item) {
     console.log(i);
     i = i++;
   }
+  console.log(marker.map == map)
+  console.log(marker.map);
   
  return marker;
 }
@@ -825,7 +831,6 @@ function clearStaleMarkers() {
   $.each(map_data.scanned, function(key, value) {
     //If older than 15mins remove
     if (map_data.scanned[key]['last_modified'] < (new Date().getTime() - 15 * 60 * 1000)) {
-      console.log("get down!");
       map_data.scanned[key].marker.setMap(null);
       delete map_data.scanned[key];
     }
@@ -1015,7 +1020,6 @@ function processScanned(i, item) {
     if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
     map_data.scanned[item.scanned_id] = item;
-    console.log(map_data.scanned);
   }
 }
 
