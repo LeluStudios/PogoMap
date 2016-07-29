@@ -1007,7 +1007,7 @@ function processScanned(i, item) {
       fillColor: getColorByDate(item.last_modified)
     });
   } else { // add marker to map and item to dict
-    if (item.marker) item.marker.setMap(null);
+    if (item.marker) item.marker.setMap(map);
     item.marker = setupScannedMarker(item);
     console.log(item);
     map_data.scanned[item.scanned_id] = item;
