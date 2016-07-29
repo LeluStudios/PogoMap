@@ -751,18 +751,6 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
  
-  var marker = new google.maps.Polygon({
-    map: map,
-    paths: flightPlanCoordinates,
-    strokeColor: '#00FF00',
-    strokeOpacity: 0.5,
-    strokeWeight: 1,
-    fillColor: '#00FF00'
-  });
-  
-  console.log(marker);
-  
-  
  return new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
@@ -1017,6 +1005,7 @@ function processScanned(i, item) {
     if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
     map_data.scanned[item.scanned_id] = item;
+    map_data.scanned[item.scanned_id].map = map;
   }
 }
 
