@@ -751,15 +751,14 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
   var marker = new google.maps.Circle({
-        map: map,
-        center: circleCenter,
-        radius: 100,    // 10 miles in metres
-        fillColor: getColorByDate(item.last_modified),
-        fillOpacity: 0,
-        strokeWeight: 0,
-        strokeOpacity: 0
-    });
- marker = new google.maps.Polygon({
+    map: map,
+    center: circleCenter,
+    radius: 100, // 10 miles in metres
+    fillColor: getColorByDate(item.last_modified),
+    strokeWeight: 1
+  });
+  /*
+ var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#000000',
@@ -770,10 +769,9 @@ function setupScannedMarker(item) {
     center: circleCenter,
     radius: 100
   });
-  
+  */
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//Ich hab keinen blassen schimmer warum das funktioniert. Er nimmt trotzdem das Sechseck (marker2) und ohne den Kreis klappt es nich WTF?!
-  return marker;
+ return marker;
 }
 
 function clearSelection() {
