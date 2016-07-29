@@ -755,10 +755,10 @@ function setupScannedMarker(item) {
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
-    strokeOpacity: 0.5,
+    strokeOpacity: 0.4,
     strokeWeight: 1,
     fillColor: '#00FF00',
-    fillOpacity: 0.3,
+    fillOpacity: 0.1,
     center: circleCenter,
     getCenter: function(){
       return this.center;
