@@ -750,7 +750,7 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() - 0.00045, lng: circleCenter.lng() +offsetlng},
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
- 
+ /*
  var marker = new google.maps.Circle({
     map: map,
     center: circleCenter,
@@ -759,8 +759,8 @@ function setupScannedMarker(item) {
     strokeWeight: 1,
     fillOpacity: 0
   });
-  
-  var marker2 = new google.maps.Polygon({
+ */ 
+  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
@@ -771,8 +771,8 @@ function setupScannedMarker(item) {
     radius: 100
   });
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
- 
- return marker2;
+ item.marker = marker;
+ return marker;
 }
 
 function clearSelection() {
