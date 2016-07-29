@@ -759,7 +759,7 @@ function setupScannedMarker(item) {
     strokeWeight: 1
   });
   
-  var marker = new google.maps.Polygon({
+  var marker2 = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#00FF00',
