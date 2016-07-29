@@ -770,9 +770,12 @@ function setupScannedMarker(item) {
     center: circleCenter,
     radius: 100
   });
+  
+  var marker2 = marker;
+  marker2.map = map;
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  item.marker = marker;
- return marker;
+ return marker2;
 }
 
 function clearSelection() {
