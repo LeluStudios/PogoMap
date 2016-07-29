@@ -751,6 +751,7 @@ function setupScannedMarker(item) {
     {lat: circleCenter.lat() + 0.00045, lng: circleCenter.lng() +offsetlng}
   ];
  
+ console.log(map);
   var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
@@ -1007,9 +1008,8 @@ function processScanned(i, item) {
       fillColor: getColorByDate(item.last_modified)
     });
   } else { // add marker to map and item to dict
-    if (item.marker) item.marker.setMap(map);
+    if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
-    console.log(item);
     map_data.scanned[item.scanned_id] = item;
   }
 }
