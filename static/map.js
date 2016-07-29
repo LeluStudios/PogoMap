@@ -756,7 +756,8 @@ function setupScannedMarker(item) {
     center: circleCenter,
     radius: 100, // 10 miles in metres
     fillColor: getColorByDate(item.last_modified),
-    strokeWeight: 1
+    strokeWeight: 1,
+    fillOpacity: 0
   });
   
   var marker2 = new google.maps.Polygon({
@@ -771,7 +772,7 @@ function setupScannedMarker(item) {
   });
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  
- return marker;
+ return marker2;
 }
 
 function clearSelection() {
