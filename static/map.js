@@ -717,7 +717,7 @@ function setupScannedMarker(item) {
     var circleCenter = new google.maps.LatLng(item.latitude, item.longitude);
  //var offsetlng = 0.0012775;
  //var offsetlng = 0.001280908;
-   var offsetlng = 0.00128045;
+   var offsetlng = 0.001280475;
  console.log(circleCenter.lat());
  var flightPlanCoordinates = [
     {lat: circleCenter.lat() + 0.0009, lng:  circleCenter.lng()},
