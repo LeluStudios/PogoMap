@@ -763,6 +763,7 @@ function setupScannedMarker(item) {
     radius: 100
   });
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ marker.setMap(map);
  console.log(marker);
  return marker;
 }
