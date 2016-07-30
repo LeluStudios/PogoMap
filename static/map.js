@@ -621,7 +621,7 @@ function getGoogleSprite(index, sprite, display_height) {
 }
 var notifiedList = [];
 function chekForNotified(item){
-  for(int i = 0; i<notifiedList.length; i++){
+  for(var i = 0; i<notifiedList.length; i++){
     if(notifiedList[i].time == item.disappear_time){
       if(notifiedList[i].long == item.longitude){
         if(notifiedList[i].lat == item.latitude){
