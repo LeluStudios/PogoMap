@@ -16,4 +16,5 @@ applications:
       USERNAME: yourauthserviceusername
       PASSWORD: yourauthservicepassword
       LOCATION: "yourlocation"
-      STEP_COUNT: 5
+      STEP_COUNT: 5,
+      SCAN_DELAY: 0
