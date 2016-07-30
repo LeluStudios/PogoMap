@@ -1027,10 +1027,8 @@ function removeOverleyMarker(markers, id) {
       if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
          if(markers[key]['last_modified']<markers[id]['last_modified']){
             map_data.scanned[key].marker.setMap(null);
-            delete map_data.scanned[key];
          }else{
             map_data.scanned[id].marker.setMap(null);
-            delete map_data.scanned[id];
          }
       }
     }
