@@ -769,10 +769,11 @@ function setupScannedMarker(item) {
     }
   });
   
+  /*
   marker.addListener('click', function() {
     changeLocation(circleCenter.lat(), circleCenter.lng());
   });
-  
+  */
  return marker;
 }
 
