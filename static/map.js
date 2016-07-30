@@ -655,8 +655,8 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
   });
 
   if (notifiedPokemon.indexOf(item.pokemon_id) > -1) {
-    console.log(typeof item.marker.map);
-    if(typeof item.marker.map == "undefined"){
+    console.log(item);
+    if(typeof item.marker.map === "undefined"){
       if (!skipNotification) {
         if (Store.get('playSound')) {
           audio.play();
