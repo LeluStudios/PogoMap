@@ -450,6 +450,10 @@ function initSidebar() {
   });
   icons.val((pokemon_sprites[Store.get('pokemonIcons')]) ? Store.get('pokemonIcons') : 'highres');
   $('#pokemon-icon-size').val(Store.get('iconSizeModifier'));
+  
+  $('#notify-all-pokemon').click(function() {
+    	loadNotifications();
+    });
 }
 
 function pad(number) {
@@ -727,14 +731,14 @@ function setupPokestopMarker(item) {
 
 function getColorByDate(value) {
   //Changes the color from red to green over 15 mins
-  var diff = (Date.now() - value) / 1000 / 60 / 15;
+  var diff = (Date.now() - value) / 1000 / 60 / 8;
 
   if (diff > 1) {
     diff = 1;
   }
 
   //value from 0 to 1 - Green to Red
-  var hue = ((1 - diff) * 120).toString(10);
+  var hue = (360-((1 - diff) * 120)).toString(10);
   return ["hsl(", hue, ",100%,50%)"].join("");
 }
 
@@ -754,15 +758,20 @@ function setupScannedMarker(item) {
  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
-    strokeColor: '#00FF00',
-    strokeOpacity: 0.4,
+    strokeColor: '#0000FF',
+    strokeOpacity: 0.3,
     strokeWeight: 1,
-    fillColor: '#00FF00',
+    fillColor: '#0000FF',
     fillOpacity: 0.1,
     center: circleCenter,
     getCenter: function(){
       return this.center;
     }
+  });
+  
+  
+  marker.addListener('click', function() {
+    changeLocation(circleCenter.lat(), circleCenter.lng());
   });
   
  return marker;
@@ -1006,15 +1015,33 @@ function processScanned(i, item) {
 
   if (item.scanned_id in map_data.scanned) {
     map_data.scanned[item.scanned_id].marker.setOptions({
-      fillColor: getColorByDate(item.last_modified)
+      fillColor: getColorByDate(item.last_modified),
+      strokeColor: getColorByDate(item.last_modified)
     });
   } else { // add marker to map and item to dict
     if (item.marker) item.marker.setMap(null);
     item.marker = setupScannedMarker(item);
     map_data.scanned[item.scanned_id] = item;
+    removeOverleyMarker(map_data.scanned, item.scanned_id);
   }
 }
 
+function removeOverleyMarker(markers, id) {
+  $.each(markers, function(key, value) {
+    if(id!=key && typeof  markers[key].marker != 'undefined' && typeof markers[id].marker != 'undefined'){
+      if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
+         if(markers[key]['last_modified']<markers[id]['last_modified']){
+            map_data.scanned[key].marker.fillOpacity=0;
+            map_data.scanned[key].marker.strokeOpacity=0;
+            
+         }else{
+            map_data.scanned[id].marker.fillOpacity=0;
+            map_data.scanned[id].marker.strokeOpacity=0;
+         }
+      }
+    }
+  });
+}
 
 function updateMap() {
   loadRawData().done(function(result) {
@@ -1190,17 +1217,8 @@ function addMyLocationButton() {
   
   google.maps.event.addListener(map, 'click', function(event) {
         var newLocation = event.latLng;
-        changeSearchLocation(newLocation.lat(), newLocation.lng())
-            .done(function() {
-                oldLocation = null;
-                marker.setPosition(newLocation);
-            })
-            .fail(function() {
-                if (oldLocation) {
-                    marker.setPosition(oldLocation);
-                }
-            });
-    });
+        changeLocation(newLocation.lat(), newLocation.lng());
+  });
 }
 
 function changeLocation(lat, lng) {
