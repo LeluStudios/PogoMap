@@ -768,11 +768,10 @@ function setupScannedMarker(item) {
       return this.center;
     }
   });
+  
   marker.addListener('click', function() {
     changeLocation(circleCenter.lat(), circleCenter.lng());
   });
-  
-}
   
  return marker;
 }
