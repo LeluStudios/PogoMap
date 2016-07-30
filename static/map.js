@@ -769,6 +769,21 @@ function setupScannedMarker(item) {
     }
   });
   
+  google.maps.event.addListener(marker, 'click', function(event) {
+        var newLocation = circleCenter;
+        changeSearchLocation(newLocation.lat(), newLocation.lng())
+            .done(function() {
+                oldLocation = null;
+                marker.setPosition(newLocation);
+            })
+            .fail(function() {
+                if (oldLocation) {
+                    marker.setPosition(oldLocation);
+                }
+            });
+    });
+}
+  
  return marker;
 }
 
