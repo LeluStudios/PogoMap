@@ -1032,13 +1032,9 @@ function removeOverleyMarker(markers, id) {
       if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
          if(markers[key]['last_modified']<markers[id]['last_modified']){
             map_data.scanned[key].marker.setMap(null);
-            console.log(map_data.scanned[key]);
-            delete map_data.scanned[key];
-            
+            console.log(map_data.scanned[key].marker);
          }else{
             map_data.scanned[id].marker.setMap(null);
-            console.log(map_data.scanned[key]);
-            delete map_data.scanned[key];
             
          }
       }
@@ -1220,17 +1216,8 @@ function addMyLocationButton() {
   
   google.maps.event.addListener(map, 'click', function(event) {
         var newLocation = event.latLng;
-        changeSearchLocation(newLocation.lat(), newLocation.lng())
-            .done(function() {
-                oldLocation = null;
-                marker.setPosition(newLocation);
-            })
-            .fail(function() {
-                if (oldLocation) {
-                    marker.setPosition(oldLocation);
-                }
-            });
-    });
+        changeLocation(newLocation.lat(), newLocation.lng());
+  });
 }
 
 function changeLocation(lat, lng) {
