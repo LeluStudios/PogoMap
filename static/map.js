@@ -655,7 +655,8 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
   });
 
   if (notifiedPokemon.indexOf(item.pokemon_id) > -1) {
-    if(item.marker.map != null){
+    console.log(typeof item.marker.map);
+    if(typeof item.marker.map == "undefined"){
       if (!skipNotification) {
         if (Store.get('playSound')) {
           audio.play();
@@ -668,8 +669,10 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
       }
     }else{
+      /*
       item.marker.map = map;
       setupPokemonMarker(item, skipNotification, isBounceDisabled);
+      */
     }
   }
 
