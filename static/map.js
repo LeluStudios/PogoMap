@@ -727,14 +727,14 @@ function setupPokestopMarker(item) {
 
 function getColorByDate(value) {
   //Changes the color from red to green over 15 mins
-  var diff = (Date.now() - value) / 1000 / 60 / 15;
+  var diff = (Date.now() - value) / 1000 / 60 / 8;
 
   if (diff > 1) {
     diff = 1;
   }
 
   //value from 0 to 1 - Green to Red
-  var hue = ((1 - diff) * 120).toString(10);
+  var hue = (((1 - diff) * 120)+240).toString(10);
   return ["hsl(", hue, ",100%,50%)"].join("");
 }
 
@@ -754,10 +754,10 @@ function setupScannedMarker(item) {
  var marker = new google.maps.Polygon({
     map: map,
     paths: flightPlanCoordinates,
-    strokeColor: '#00FF00',
+    strokeColor: '#0000FF',
     strokeOpacity: 0.4,
     strokeWeight: 1,
-    fillColor: '#00FF00',
+    fillColor: '#0000FF',
     fillOpacity: 0.1,
     center: circleCenter,
     getCenter: function(){
@@ -1006,7 +1006,8 @@ function processScanned(i, item) {
 
   if (item.scanned_id in map_data.scanned) {
     map_data.scanned[item.scanned_id].marker.setOptions({
-      fillColor: getColorByDate(item.last_modified)
+      fillColor: getColorByDate(item.last_modified),
+      strokeColor: getColorByDate(item.last_modified)
     });
   } else { // add marker to map and item to dict
     if (item.marker) item.marker.setMap(null);
