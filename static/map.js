@@ -759,7 +759,7 @@ function setupScannedMarker(item) {
     map: map,
     paths: flightPlanCoordinates,
     strokeColor: '#0000FF',
-    strokeOpacity: 0.4,
+    strokeOpacity: 0.3,
     strokeWeight: 1,
     fillColor: '#0000FF',
     fillOpacity: 0.1,
