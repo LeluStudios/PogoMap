@@ -1023,8 +1023,7 @@ function processScanned(i, item) {
 
 function removeOverleyMarker(markers, id) {
   $.each(markers, function(key, value) {
-    var marker = markers[key].marker;
-    if(id!=key){
+    if(id!=key && typeof  markers[key].marker != 'undefined' && typeof markers[id].marker != 'undefined'){
       if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
          if(markers[key]['last_modified']<markers[id]['last_modified']){
             map_data.scanned[key].marker.setMap(null);
