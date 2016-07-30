@@ -450,6 +450,10 @@ function initSidebar() {
   });
   icons.val((pokemon_sprites[Store.get('pokemonIcons')]) ? Store.get('pokemonIcons') : 'highres');
   $('#pokemon-icon-size').val(Store.get('iconSizeModifier'));
+  
+  $('#notify-all-pokemon').click(function() {
+    	loadNotifications();
+    });
 }
 
 function pad(number) {
