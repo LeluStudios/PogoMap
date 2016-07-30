@@ -1024,14 +1024,16 @@ function processScanned(i, item) {
 function removeOverleyMarker(markers, id) {
   $.each(markers, function(key, value) {
     var marker = markers[key].marker;
-    if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
-       if(markers[key]['last_modified']<markers[id]['last_modified']){
-          map_data.scanned[key].marker.setMap(null);
-          delete map_data.scanned[key];
-       }else{
-          map_data.scanned[id].marker.setMap(null);
-          delete map_data.scanned[id];
-       }
+    if(id!=key){
+      if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
+         if(markers[key]['last_modified']<markers[id]['last_modified']){
+            map_data.scanned[key].marker.setMap(null);
+            delete map_data.scanned[key];
+         }else{
+            map_data.scanned[id].marker.setMap(null);
+            delete map_data.scanned[id];
+         }
+      }
     }
   });
 }
