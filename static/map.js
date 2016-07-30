@@ -655,16 +655,21 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
   });
 
   if (notifiedPokemon.indexOf(item.pokemon_id) > -1) {
-    if (!skipNotification) {
-      if (Store.get('playSound')) {
-        audio.play();
+    if(item.marker.map != null){
+      if (!skipNotification) {
+        if (Store.get('playSound')) {
+          audio.play();
+        }
+        console.log(item);
+        sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
+        sendMobileNotification(item.pokemon_name); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
       }
-      console.log(item);
-      sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
-      sendMobileNotification(item.pokemon_name); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
-    }
-    if (marker.animationDisabled != true) {
-      marker.setAnimation(google.maps.Animation.BOUNCE);
+      if (marker.animationDisabled != true) {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }else{
+      item.marker.map = map;
+      setupPokemonMarker(item, skipNotification, isBounceDisabled);
     }
   }
 
