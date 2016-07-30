@@ -619,7 +619,24 @@ function getGoogleSprite(index, sprite, display_height) {
     anchor: scaled_icon_center_offset
   };
 }
-
+var notifiedList = [];
+function chekForNotified(item){
+  for(int i = 0; i<notifiedList.length; i++){
+    if(notifiedList[i].time == item.disappear_time){
+      if(notifiedList[i].long == item.longitude){
+        if(notifiedList[i].lat == item.latitude){
+          return false;
+        }
+      }
+    }
+  }
+  
+  notifiedList[notifiedList.length] = {time: item.disappear_time, long: item.longitude, lat: item.latitude};
+  if(notifiedList.length == 100){
+    notifiedList = [];
+  }
+  return true;
+}
 function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
   // Scale icon size up with the map exponentially
   var icon_size = 2 + (map.getZoom() - 3) * (map.getZoom() - 3) * .2 + Store.get('iconSizeModifier');
@@ -655,27 +672,20 @@ function setupPokemonMarker(item, skipNotification, isBounceDisabled) {
   });
 
   if (notifiedPokemon.indexOf(item.pokemon_id) > -1) {
-    console.log(item);
-    if(typeof item.marker.map === "undefined"){
+    if(chekForNotified(item)){
       if (!skipNotification) {
         if (Store.get('playSound')) {
           audio.play();
         }
-        console.log(item);
         sendNotification('A wild ' + item.pokemon_name + ' appeared!', 'Click to load map', 'static/icons/' + item.pokemon_id + '.png', item.latitude, item.longitude);
         sendMobileNotification(item.pokemon_name); //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@LENNY
       }
       if (marker.animationDisabled != true) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
       }
-    }else{
-      /*
-      item.marker.map = map;
-      setupPokemonMarker(item, skipNotification, isBounceDisabled);
-      */
     }
   }
-
+  
   addListeners(marker);
   return marker;
 }
