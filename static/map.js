@@ -769,11 +769,11 @@ function setupScannedMarker(item) {
     }
   });
   
-  /*
+  
   marker.addListener('click', function() {
     changeLocation(circleCenter.lat(), circleCenter.lng());
   });
-  */
+  
  return marker;
 }
 
@@ -1031,11 +1031,12 @@ function removeOverleyMarker(markers, id) {
     if(id!=key && typeof  markers[key].marker != 'undefined' && typeof markers[id].marker != 'undefined'){
       if(google.maps.geometry.poly.containsLocation(markers[key].marker.getCenter(), markers[id].marker)){
          if(markers[key]['last_modified']<markers[id]['last_modified']){
-            map_data.scanned[key].marker.setMap(null);
-            console.log(map_data.scanned[key].marker);
-         }else{
-            map_data.scanned[id].marker.setMap(null);
+            map_data.scanned[key].marker.fillOpacity=0;
+            map_data.scanned[key].marker.strokeOpacity=0;
             
+         }else{
+            map_data.scanned[id].marker.fillOpacity=0;
+            map_data.scanned[id].marker.strokeOpacity=0;
          }
       }
     }
